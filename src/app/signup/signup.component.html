@@ -1,0 +1,19 @@
+<form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
+      <label for="bname">BookName</label>
+      <input type="text" class="form-control" id="bname" #bname="ngModel" required [(ngModel)] = "books.name" placeholder="Bookname">
+      <div *ngIf="bname.invalid && (bname.touched || bname.dirty)" class="mt-2 alert alert-danger">
+          Firstname is mandatory
+      </div>
+    
+      <label for="qty">Quantity</label><br>
+      <input type="text" class="form-control" id="qty" [(ngModel)] = "books.qty" placeholder="Quantity"><br>
+
+      <label for="authors">Authors</label><br>
+      <input type="text" class="form-control" id="authors" [(ngModel)] = "books.authors" placeholder="Authors"><br>
+
+      <label for="address">Address</label><br>
+      <input type="text" class="form-control" id="address" [(ngModel)] = "books.address" placeholder="Address"><br>
+    
+    
+    <button type="submit" [disabled]="bookForm.invalid" class="btn btn-danger">Submit</button>
+  </form>

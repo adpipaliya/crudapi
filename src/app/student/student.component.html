@@ -1,0 +1,49 @@
+<!----Fname: <input type="text" name="fname" [(ngModel)]="fname"/>
+Lname: <input type="text" name="lname" [(ngModel)]="lname"/>
+
+{{fname}}
+{{lname}}
+
+<button (click)="save()">Save Data</button>
+
+<br>
+<br>
+
+Search: <input type="text" (keyup.enter)="search()" name="query" [(ngModel)]="query"/>
+<br><br>
+Remove Item: <input type="text" name="removekey" [(ngModel)]="removekey"/>
+<button (click)="removeitem()">remove Item</button>
+
+<button (click)="removeall()">Remove All</button>
+{{res}} -->
+
+<nav class="navbar">
+    <input type="text" class="form-control" name="title" placeholder="Enter a Keyword" [(ngModel)]="title" (ngModelChange)="searchTitle()"/>
+</nav>
+
+<table class="table table-bordered">
+    <thead>
+        <th (click)="sort('userId')">
+            UserId
+        </th>
+        <th>
+            Id
+        </th>
+        <th (click)="sort('title')">
+            Title
+        </th>
+        <th>
+            Completed
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of todos | paginate:{itemsPerPage:5,currentPage:p} | orderBy:key:reverse">
+            <td>{{todo.userId}}</td>
+            <td>{{todo.id}}</td>
+            <td>{{todo.title}}</td>
+            <td>{{todo.completed}}</td>
+        </tr>
+        <br>
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </tbody>
+</table>
